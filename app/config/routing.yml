@@ -1,0 +1,4 @@
+sinniger_test:
+    resource: "@SinnigerTestBundle/Resources/config/routing.yml"
+    prefix:   /
+

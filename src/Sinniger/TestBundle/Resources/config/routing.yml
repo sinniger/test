@@ -1,0 +1,7 @@
+sinniger_test_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SinnigerTestBundle:Default:index }
+
+sinniger_test_form:
+    path:     /form/{name}
+    defaults: { _controller: SinnigerTestBundle:Default:form }

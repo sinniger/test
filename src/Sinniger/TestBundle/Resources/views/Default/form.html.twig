@@ -1,0 +1,11 @@
+{{name}}
+
+
+{{ form(form, {'method': 'GET'}) }}
+
+
+ {% for sprache in form.fremdsprachen %}
+            <li>{{ form_row(sprache.deName) }}</li>
+            ---	
+        {% endfor %}
+
