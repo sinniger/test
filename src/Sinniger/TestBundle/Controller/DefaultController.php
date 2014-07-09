@@ -22,9 +22,11 @@ class DefaultController extends Controller
     public function formAction($name="test", Request $request){
     	
 $userId=1;
-    			$profile = $this->getDoctrine()
-				        ->getRepository('SinnigerTestBundle:Profile')
-				        ->find($userId);
+		
+
+		$profile = $this->getDoctrine()
+		        ->getRepository('SinnigerTestBundle:Profile')
+		        ->find($userId);
 
 
     	$locale="de";
