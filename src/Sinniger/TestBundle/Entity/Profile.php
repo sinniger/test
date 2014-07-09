@@ -81,7 +81,15 @@ class Profile
     {
         return $this->fremdsprachen;
     }
+    
+    // public function getFremdsprachenCollection(){
+    //     return $this->fremdsprachen;
+    // }
 
+    
+    public function addFremdsprachen($fremdsprache){
+        $this->fremdsprachen->add($fremdsprache);   
+    }
     /**
      * Set username
      *
