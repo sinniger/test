@@ -3,6 +3,7 @@
 namespace Sinniger\TestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Sprachen
@@ -12,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Sprachen
 {
+    
+    public function __construct(){
+        $this->benutzersprachen = new ArrayCollection();
+    }
     /**
      * @var integer
      *
@@ -36,6 +41,19 @@ class Sprachen
     private $enName;
 
 
+
+    /**
+    *@ORM\ManyToMany(targetEntity="Profile", mappedBy="fremdsprachen")
+    *
+    **/
+    private $benutzersprachen;
+
+    public function getBenutzersprachen(){
+        return $this->benutzersprachen;
+    }
+    public function addBenutzersprachen(\Sinniger\TestBundle\Entity\Profile $benutzer){
+        $this->benutzersprachen->add($benutzer);
+    }
     /**
      * Get id
      *
@@ -93,7 +111,7 @@ class Sprachen
     }
     public function __toString()
     {
-        return "Sprachen";
+        return (string) $this->deName;
     }
 
 }
