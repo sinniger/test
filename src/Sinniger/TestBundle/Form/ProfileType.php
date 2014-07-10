@@ -15,11 +15,12 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('fremdsprachen')
-            ->add('fremdsprachen', 'collection',array('type'=>new SprachenType()));
-             // $builder->add('fremdsprachen', 'collection', 
-             //    array('type' => new SprachenType(), 'allow_add'    => true));
-        ;
+           
+            ->add('fremdsprachen', 'collection',array('type'=>new SprachenType()))
+         //->add('fremdsprachen')
+
+            ->add('submit', 'submit');
+        
     }
     
     /**

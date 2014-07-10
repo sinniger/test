@@ -18,6 +18,12 @@ class Profile
         $this->fremdsprachen = new ArrayCollection();
     }
 
+    
+
+    // public function __toString(){
+    //      return "test";
+    // }
+
     /**
      * @var integer
      *
@@ -30,11 +36,10 @@ class Profile
     /**
    * Many-To-Many, Unidirectional
    *
-   * @var ArrayCollection $permissions
    *
-   * @ORM\ManyToMany(targetEntity="Sprachen")
+   * @ORM\ManyToMany(targetEntity="Sprachen", inversedBy="benutzersprachen")
    * @ORM\JoinTable(name="userprofile_has_foreign_language",
-   *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+   *      joinColumns={@ORM\JoinColumn(name="profile_id", referencedColumnName="id")},
    *      inverseJoinColumns={@ORM\JoinColumn(name="sprachen_id", referencedColumnName="id")}
    * )
    */
@@ -60,37 +65,6 @@ class Profile
     }
 
     /**
-     * Set fremdsprachen
-     *
-     * @param string $fremdsprachen
-     * @return Profile
-     */
-    public function setFremdsprachen($fremdsprachen)
-    {
-        $this->fremdsprachen = $fremdsprachen;
-
-        return $this;
-    }
-
-    /**
-     * Get fremdsprachen
-     *
-     * @return string 
-     */
-    public function getFremdsprachen()
-    {
-        return $this->fremdsprachen;
-    }
-    
-    // public function getFremdsprachenCollection(){
-    //     return $this->fremdsprachen;
-    // }
-
-    
-    public function addFremdsprachen($fremdsprache){
-        $this->fremdsprachen->add($fremdsprache);   
-    }
-    /**
      * Set username
      *
      * @param string $username
@@ -111,5 +85,41 @@ class Profile
     public function getUsername()
     {
         return $this->username;
+    }
+
+   
+
+    /**
+     * Add fremdsprachen
+     *
+     * @param \Sinniger\TestBundle\Entity\Sprachen $fremdsprachen
+     * @return Profile
+     */
+    public function addFremdsprachen(\Sinniger\TestBundle\Entity\Sprachen $fremdsprachen)
+    {
+        $fremdsprachen->addBenutzersprachen($this);//?
+        $this->fremdsprachen[] = $fremdsprachen;
+
+        return $this;
+    }
+
+    /**
+     * Remove fremdsprachen
+     *
+     * @param \Sinniger\TestBundle\Entity\Sprachen $fremdsprachen
+     */
+    public function removeFremdsprachen(\Sinniger\TestBundle\Entity\Sprachen $fremdsprachen)
+    {
+        $this->fremdsprachen->removeElement($fremdsprachen);
+    }
+
+    /**
+     * Get fremdsprachen
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFremdsprachen()
+    {
+        return $this->fremdsprachen;
     }
 }

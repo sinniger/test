@@ -15,20 +15,15 @@ class SprachenType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $lang_query="deName";
         $builder
-            //->add('deName')
             //->add('enName')
+            ->add('enName')
 
-             ->add('dename','entity', 
+             ->add('deName','entity', 
                     array('class'=>'Sinniger\TestBundle\Entity\Sprachen',
-                        'property' => "deName",
-                         'multiple' => false,
-                        // 'query_builder' => function(EntityRepository $er) use ($lang_query) {
-                        //     return $er->createQueryBuilder('s')->orderBy('s.'.$lang_query, 'asc');
-                        // },
-          
-                    ))  
+                        'property' => "enName"))  
+
+             //->add('submit', 'submit')
         ;
     }
     
@@ -39,6 +34,7 @@ class SprachenType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sinniger\TestBundle\Entity\Sprachen',
+            //'data_class' => null
             
         ));
     }
