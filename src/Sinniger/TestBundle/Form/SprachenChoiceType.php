@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 
-class SprachenType extends AbstractType
+class SprachenChoiceType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -17,26 +17,16 @@ class SprachenType extends AbstractType
     {
         $builder
             //->add('enName')
-            ->add('deName')
-            
-            ->add('benutzersprachen',null,
+            //->add('enName')
+
+             ->add('benutzersprachen','choice', 
                     array('class'=>'Sinniger\TestBundle\Entity\Sprachen',
                         'property' => "deName",
-                        'expanded'=> false,
-                        'by_reference'=>false,
+                        'expanded'=> true,
+                        'by_reference'=>true,
                         'multiple' => false))  
-             //->add('benutzersprachen')
-  
-  //->add('benutzersprachen', null, array('property' => 'test'))
 
-             // ->add('deName','entity', 
-             //        array('class'=>'Sinniger\TestBundle\Entity\Sprachen',
-             //            'property' => "deName",
-             //            'expanded'=> false,
-             //           // 'by_reference'=>true,
-             //            'multiple' => false))  
-
-             //->add('submit', 'submit')
+             ->add('submit', 'submit')
         ;
     }
     

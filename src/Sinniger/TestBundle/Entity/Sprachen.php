@@ -16,6 +16,8 @@ class Sprachen
     
     public function __construct(){
         $this->benutzersprachen = new ArrayCollection();
+        // $this->deNameChoice = $this->deName;
+        // $this->enNameChoice = $this->enName;
     }
     /**
      * @var integer
@@ -40,12 +42,18 @@ class Sprachen
      */
     private $enName;
 
+    // public $deNameChoice;
+
+    // public $enNameChoice;
 
 
-    /**
-    *@var benutzersprachen
+
+    /** 
     *@ORM\ManyToMany(targetEntity="Profile", mappedBy="fremdsprachen")
-    *
+   * @ORM\JoinTable(name="profile_sprachen",
+   *      joinColumns={@ORM\JoinColumn(name="sprachen_id", referencedColumnName="id")},
+   *      inverseJoinColumns={@ORM\JoinColumn(name="profile_id", referencedColumnName="id")}
+   * )
     **/
     private $benutzersprachen;
 
@@ -110,7 +118,10 @@ class Sprachen
     }
 
 
-
+public function setBenutzersprachenCollection(Collection $sprachen){
+    $this->benutzersprachen=$sprachen;
+    return $this;
+}
     /**
      * Add benutzersprachen
      *
@@ -143,4 +154,6 @@ class Sprachen
     {
         return $this->benutzersprachen;
     }
+
+
 }

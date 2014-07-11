@@ -33,17 +33,13 @@ class Profile
      */
     private $id;
 
-    /**
-   * Many-To-Many, Unidirectional
-   *
-   *
-   * @ORM\ManyToMany(targetEntity="Sprachen", inversedBy="benutzersprachen")
-   * @ORM\JoinTable(name="userprofile_has_foreign_language",
-   *      joinColumns={@ORM\JoinColumn(name="profile_id", referencedColumnName="id")},
-   *      inverseJoinColumns={@ORM\JoinColumn(name="sprachen_id", referencedColumnName="id")}
-   * )
-   */
 
+
+        /**
+    *@var benutzersprachen
+    *@ORM\ManyToMany(targetEntity="Sprachen", inversedBy="benutzersprachen")
+    *
+    **/
     private $fremdsprachen;
 
     /**
@@ -52,6 +48,8 @@ class Profile
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
+
+
 
 
     /**
@@ -122,4 +120,9 @@ class Profile
     {
         return $this->fremdsprachen;
     }
+
+        public function getTest(){
+        return "asdf";
+    }
+
 }

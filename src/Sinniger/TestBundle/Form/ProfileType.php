@@ -15,9 +15,15 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           
+           //->add('fremdsprachen')
+           //->add('deName', new SprachenType())
+
             ->add('fremdsprachen', 'collection',array('type'=>new SprachenType()))
-         //->add('fremdsprachen')
+         
+         //->add('fremdsprachen', 'choice', array('multiple'=>true))
+
+            //->add(new SprachenChoiceType())
+ 
 
             ->add('submit', 'submit');
         
@@ -29,7 +35,7 @@ class ProfileType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sinniger\TestBundle\Entity\Profile'
+          //  'data_class' => 'Sinniger\TestBundle\Entity\Profile'
         ));
     }
 
@@ -38,6 +44,6 @@ class ProfileType extends AbstractType
      */
     public function getName()
     {
-        return 'sinniger_testbundle_profile';
+        return 'profile';
     }
 }
