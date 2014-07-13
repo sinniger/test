@@ -28,7 +28,13 @@ $userId=1;
 		        ->getRepository('SinnigerTestBundle:Profile')
 		        ->find($userId);
 
-
+       
+        $sprache1=$this->getDoctrine()
+                ->getRepository('SinnigerTestBundle:Sprachen')
+                ->find('1');
+        $profile->addFremdsprachen($sprache1);
+       // var_dump($profile);
+      //  \Doctrine\Common\Util\Debug::dump($profile->getFremdsprachen());
     	$locale="de";
 
 		

@@ -18,7 +18,9 @@ class ProfileType extends AbstractType
            //->add('fremdsprachen')
            //->add('deName', new SprachenType())
 
-            ->add('fremdsprachen', 'collection',array('type'=>new SprachenType()))
+            ->add('fremdsprachen', 'collection',array(
+                'type'=>new SprachenType(),
+                'prototype' => true))
          
          //->add('fremdsprachen', 'choice', array('multiple'=>true))
 

@@ -24,6 +24,7 @@ class SprachenType extends AbstractType
                         'property' => "deName",
                         'expanded'=> false,
                         'by_reference'=>false,
+                       // 'prototype' => true,
                         'multiple' => false))  
              //->add('benutzersprachen')
   
