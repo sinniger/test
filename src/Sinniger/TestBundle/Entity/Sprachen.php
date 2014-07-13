@@ -49,7 +49,7 @@ class Sprachen
 
 
     /** 
-    *@ORM\ManyToMany(targetEntity="Profile", mappedBy="fremdsprachen")
+    *@ORM\ManyToMany(targetEntity="Profile", inversedBy="fremdsprachen", cascade={"persist"})
    * @ORM\JoinTable(name="profile_sprachen",
    *      joinColumns={@ORM\JoinColumn(name="sprachen_id", referencedColumnName="id")},
    *      inverseJoinColumns={@ORM\JoinColumn(name="profile_id", referencedColumnName="id")}
@@ -118,42 +118,47 @@ class Sprachen
     }
 
 
-public function setBenutzersprachenCollection(Collection $sprachen){
-    $this->benutzersprachen=$sprachen;
-    return $this;
-}
-    /**
-     * Add benutzersprachen
-     *
-     * @param \Sinniger\TestBundle\Entity\Profile $benutzersprachen
-     * @return Sprachen
-     */
-    public function addBenutzersprachen(\Sinniger\TestBundle\Entity\Profile $benutzersprachen)
-    {
-        $this->benutzersprachen[] = $benutzersprachen;
-
-        return $this;
-    }
-
-    /**
-     * Remove benutzersprachen
-     *
-     * @param \Sinniger\TestBundle\Entity\Profile $benutzersprachen
-     */
-    public function removeBenutzersprachen(\Sinniger\TestBundle\Entity\Profile $benutzersprachen)
-    {
-        $this->benutzersprachen->removeElement($benutzersprachen);
-    }
-
-    /**
-     * Get benutzersprachen
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getBenutzersprachen()
-    {
-        return $this->benutzersprachen;
-    }
 
 
 }
+
+
+
+
+// public function setBenutzersprachenCollection(Collection $sprachen){
+//     $this->benutzersprachen=$sprachen;
+//     return $this;
+// }
+//     /**
+//      * Add benutzersprachen
+//      *
+//      * @param \Sinniger\TestBundle\Entity\Profile $benutzersprachen
+//      * @return Sprachen
+//      */
+//     public function addBenutzersprachen(\Sinniger\TestBundle\Entity\Profile $benutzersprachen)
+//     {
+//         $this->benutzersprachen[] = $benutzersprachen;
+
+//         return $this;
+//     }
+
+//     *
+//      * Remove benutzersprachen
+//      *
+//      * @param \Sinniger\TestBundle\Entity\Profile $benutzersprachen
+     
+//     public function removeBenutzersprachen(\Sinniger\TestBundle\Entity\Profile $benutzersprachen)
+//     {
+//         $this->benutzersprachen->removeElement($benutzersprachen);
+//     }
+
+//     /**
+//      * Get benutzersprachen
+//      *
+//      * @return \Doctrine\Common\Collections\Collection 
+//      */
+//     public function getBenutzersprachen()
+//     {
+//         return $this->benutzersprachen;
+//     }
+
