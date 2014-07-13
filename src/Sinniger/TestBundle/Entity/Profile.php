@@ -37,7 +37,7 @@ class Profile
 
         /**
     *@var benutzersprachen
-    *@ORM\ManyToMany(targetEntity="Sprachen", inversedBy="benutzersprachen")
+    *@ORM\ManyToMany(targetEntity="Sprachen",  cascade={"persist"}, mappedBy="benutzersprachen")
     *
     **/
     private $fremdsprachen;
@@ -87,6 +87,43 @@ class Profile
 
    
 
+    // /**
+    //  * Add fremdsprachen
+    //  *
+    //  * @param \Sinniger\TestBundle\Entity\Sprachen $fremdsprachen
+    //  * @return Profile
+    //  */
+    // public function addFremdsprache(\Sinniger\TestBundle\Entity\Sprachen $fremdsprachen)
+    // {
+    //     $fremdsprachen->addBenutzersprachen($this);//?
+    //     $this->fremdsprachen[] = $fremdsprachen;
+
+    //     return $this;
+    // }
+
+    // /**
+    //  * Remove fremdsprachen
+    //  *
+    //  * @param \Sinniger\TestBundle\Entity\Sprachen $fremdsprachen
+    //  */
+    // public function removeFremdsprachen(\Sinniger\TestBundle\Entity\Sprachen $fremdsprachen)
+    // {
+    //     $this->fremdsprachen->removeElement($fremdsprachen);
+    // }
+
+    /**
+     * Get fremdsprachen
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFremdsprachen()
+    {
+        return $this->fremdsprachen;
+    }
+
+  
+
+
     /**
      * Add fremdsprachen
      *
@@ -95,7 +132,6 @@ class Profile
      */
     public function addFremdsprachen(\Sinniger\TestBundle\Entity\Sprachen $fremdsprachen)
     {
-        $fremdsprachen->addBenutzersprachen($this);//?
         $this->fremdsprachen[] = $fremdsprachen;
 
         return $this;
@@ -110,19 +146,4 @@ class Profile
     {
         $this->fremdsprachen->removeElement($fremdsprachen);
     }
-
-    /**
-     * Get fremdsprachen
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getFremdsprachen()
-    {
-        return $this->fremdsprachen;
-    }
-
-        public function getTest(){
-        return "asdf";
-    }
-
 }

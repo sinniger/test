@@ -3,5 +3,5 @@ sinniger_test_homepage:
     defaults: { _controller: SinnigerTestBundle:Default:index }
 
 sinniger_test_form:
-    path:     /form/{name}
+    path:     /form/
     defaults: { _controller: SinnigerTestBundle:Default:form }

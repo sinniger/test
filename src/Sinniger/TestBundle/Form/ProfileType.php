@@ -6,44 +6,48 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProfileType extends AbstractType   
+class ProfileType extends AbstractType
 {
-        /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
+    private $entityManager;
+
+    public function __construct($entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $transformer = new SpracheToNumberTransformer($this->entityManager);
+
+//          $builder
+//          ->add('deName')
+// ;
         $builder
-           //->add('fremdsprachen')
-           //->add('deName', new SprachenType())
+            ->add(
+                $builder->create('fremdsprachen', 'collection', array(
+                    'type' => 'sprachen_select',
+                    'allow_add' => true,
 
-            ->add('fremdsprachen', 'collection',array('type'=>new SprachenType()))
-         
-         //->add('fremdsprachen', 'choice', array('multiple'=>true))
-
-            //->add(new SprachenChoiceType())
- 
-
-            ->add('submit', 'submit');
-        
+                    'options' => array(
+                            'multiple' => false,
+                            'expanded' => false,
+                                // 'by_reference' =>false,
+                            )
+                    ))
+        )
+            ->add('speichern', 'submit')
+            ;
     }
-    
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
+
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-          //  'data_class' => 'Sinniger\TestBundle\Entity\Profile'
+            'data_class' => 'Sinniger\TestBundle\Entity\Profile'
         ));
     }
 
-    /**
-     * @return string
-     */
     public function getName()
     {
-        return 'profile';
+        return 'sinniger_testbundle_profile';
     }
 }
