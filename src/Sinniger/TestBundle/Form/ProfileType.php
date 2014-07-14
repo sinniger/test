@@ -27,10 +27,14 @@ class ProfileType extends AbstractType
                 $builder->create('fremdsprachen', 'collection', array(
                     'type' => 'sprachen_select',
                     'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
 
                     'options' => array(
                             'multiple' => false,
                             'expanded' => false,
+                              'empty_value' => 'Fremdsprache wählen',
+                            'attr' => array('class' => 'sprachen')
                                 // 'by_reference' =>false,
                             )
                     ))

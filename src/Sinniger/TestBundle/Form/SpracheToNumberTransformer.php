@@ -47,6 +47,7 @@ class SpracheToNumberTransformer implements DataTransformerInterface
      */
     public function reverseTransform($number)
     {
+        
         if (!$number) {
             return null;
         }
@@ -62,7 +63,9 @@ class SpracheToNumberTransformer implements DataTransformerInterface
                     $number
             ));
         }
-
+// echo '<pre>';
+// \Doctrine\Common\Util\Debug::dump($sprache);
+// echo '</pre>';die();
         return $sprache;
     }
 }

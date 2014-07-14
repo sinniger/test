@@ -32,7 +32,7 @@ class DefaultController extends Controller
         $sprache1=$this->getDoctrine()
                 ->getRepository('SinnigerTestBundle:Sprachen')
                 ->find('1');
-        $profile->addFremdsprachen($sprache1);
+       // $profile->addFremdsprachen($sprache1);
        // var_dump($profile);
       //  \Doctrine\Common\Util\Debug::dump($profile->getFremdsprachen());
     	$locale="de";
@@ -45,6 +45,14 @@ class DefaultController extends Controller
         if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			if ($form->isValid()) {
+    $sprache1 = $this->getDoctrine()
+                ->getRepository('SinnigerTestBundle:Sprachen')
+                ->find(2);
+               // $profile->addFremdsprachen($sprache1);
+
+// echo '<pre>';
+// \Doctrine\Common\Util\Debug::dump($profile);
+// echo '</pre>';die();
 
                     // var_dump($form->getData());
 				$em->persist($profile);
