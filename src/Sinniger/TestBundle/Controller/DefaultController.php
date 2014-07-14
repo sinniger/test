@@ -45,14 +45,19 @@ class DefaultController extends Controller
         if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			if ($form->isValid()) {
-    $sprache1 = $this->getDoctrine()
-                ->getRepository('SinnigerTestBundle:Sprachen')
-                ->find(2);
+    // $sprache1 = $this->getDoctrine()
+    //             ->getRepository('SinnigerTestBundle:Sprachen')
+    //             ->find(2);
                // $profile->addFremdsprachen($sprache1);
 
 // echo '<pre>';
-// \Doctrine\Common\Util\Debug::dump($profile);
+// \Doctrine\Common\Util\Debug::dump($profile->getFremdsprachen());
 // echo '</pre>';die();
+
+//TODO: Remove duplicate languages
+foreach ($profile->getFremdsprachen() as $key=>$sprache){
+    echo $sprache->getId();
+}
 
                     // var_dump($form->getData());
 				$em->persist($profile);
