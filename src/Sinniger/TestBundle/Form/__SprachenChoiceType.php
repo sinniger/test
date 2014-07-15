@@ -21,11 +21,11 @@ class SprachenChoiceType extends AbstractType
 
              ->add('benutzersprachen','choice', 
                     array('class'=>'Sinniger\TestBundle\Entity\Sprachen',
-                        'property' => "deName",
+                        'property' => "enName",
                         'expanded'=> true,
-                        'by_reference'=>false,
-                        'allow_add' => true,
-                        'prototype' => true,
+                        // 'by_reference'=>false,
+                        // 'allow_add' => true,
+                        // 'prototype' => true,
                         'multiple' => false))  
 
             // ->add('submit', 'submit')

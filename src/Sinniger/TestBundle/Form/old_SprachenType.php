@@ -19,7 +19,7 @@ class SprachenType extends AbstractType
             //->add('enName')
             ->add('deName')
             
-            ->add('benutzersprachen',null,
+            ->add('benutzersprachen2',null,
                     array('class'=>'Sinniger\TestBundle\Entity\Sprachen',
                         'property' => "deName",
                         'expanded'=> false,

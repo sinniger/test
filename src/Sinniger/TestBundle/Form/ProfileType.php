@@ -5,6 +5,10 @@ namespace Sinniger\TestBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+//use Doctrine\Common\Persistence\ObjectManager;
+
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ProfileType extends AbstractType
 {
@@ -17,28 +21,34 @@ class ProfileType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+       // \Doctrine\Common\Util\Debug::dump($options);
+        $locale = $options['attr']['locale'];
         $transformer = new SpracheToNumberTransformer($this->entityManager);
 
-//          $builder
-//          ->add('deName')
-// ;
         $builder
             ->add(
-                $builder->create('fremdsprachen', 'collection', array(
-                    'type' => 'sprachen_select',
+               'fremdsprachen', 'collection', array(
+                    // 'type' => 'sprachen_select', //Dont use it as service because of locale....
+                    'type' => new SprachenSelectType($this->entityManager, $locale),
                     'allow_add' => true,
                     'allow_delete' => true,
                     'by_reference' => false,
-
                     'options' => array(
                             'multiple' => false,
                             'expanded' => false,
-                              'empty_value' => 'Fremdsprache wählen',
+                            'empty_value' => 'Fremdsprache wählen',
+                            'label' => 'Fremdsprache',
                             'attr' => array('class' => 'sprachen')
-                                // 'by_reference' =>false,
                             )
-                    ))
+                    )
+
+                
         )
+            ->add('username')
+            ->add('photo', 'file', array('label'=>'hochladen', 'virtual' => true,
+                                    'attr' => 
+                                    array('label'=>'file upload', 
+                                         'empty_value'=>'bitte wählen')))
             ->add('speichern', 'submit')
             ;
     }

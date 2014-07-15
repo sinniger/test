@@ -16,8 +16,6 @@ class Sprachen
     
     public function __construct(){
         $this->benutzersprachen = new ArrayCollection();
-        // $this->deNameChoice = $this->deName;
-        // $this->enNameChoice = $this->enName;
     }
     /**
      * @var integer
@@ -110,7 +108,7 @@ class Sprachen
     }
     public function __toString()
     {
-        return (string) $this->deName;
+        //return (string) $this->deName;
     }
 
 

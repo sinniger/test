@@ -21,16 +21,24 @@ class SprachenSelectType extends AbstractType
     /**
      * @param ObjectManager $om
      */
-    public function __construct(ObjectManager $om)
+    public function __construct(ObjectManager $om, $locale)
     {
         $this->om = $om;
+        $this->locale = $locale;
 
         // Build our choices array from the database
         $sprachen = $om->getRepository('SinnigerTestBundle:Sprachen')->findAll();
         foreach ($sprachen as $sprache)
         {
             // choices[key] = label
-            $this->choices[$sprache->getId()] = $sprache->getDeName() ;
+            if ($this->locale=="de"){
+                 $this->choices[$sprache->getId()] = $sprache->getDeName() ;
+            }
+            elseif ($this->locale=="en"){
+                 $this->choices[$sprache->getId()] = $sprache->getEnName() ;
+            }
+
+           
 // echo '<pre>';
 //             var_dump($this->choices);
 // echo '</pre>';

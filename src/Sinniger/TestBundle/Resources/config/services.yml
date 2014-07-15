@@ -5,8 +5,8 @@ services:
 #    sinniger_test.example:
 #        class: %sinniger_test.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
-    sinniger_test.type.sprachen_select:
-            class: Sinniger\TestBundle\Form\SprachenSelectType
-            arguments: [@doctrine.orm.entity_manager]
-            tags:
-              - { name: form.type, alias: sprachen_select }
+    # sinniger_test.type.sprachen_select:
+    #         class: Sinniger\TestBundle\Form\SprachenSelectType
+    #         arguments: [@doctrine.orm.entity_manager]
+    #         tags:
+    #           - { name: form.type, alias: sprachen_select }

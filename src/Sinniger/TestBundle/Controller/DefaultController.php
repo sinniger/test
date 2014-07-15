@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sinniger\TestBundle\Entity\Profile;
 use Sinniger\TestBundle\Form\ProfileType;
@@ -23,53 +23,62 @@ class DefaultController extends Controller
     	
         $userId=1;
 		
+        $locale="en";
 
 		$profile = $this->getDoctrine()
 		        ->getRepository('SinnigerTestBundle:Profile')
 		        ->find($userId);
 
-       
-        $sprache1=$this->getDoctrine()
-                ->getRepository('SinnigerTestBundle:Sprachen')
-                ->find('1');
-       // $profile->addFremdsprachen($sprache1);
-       // var_dump($profile);
-      //  \Doctrine\Common\Util\Debug::dump($profile->getFremdsprachen());
-    	$locale="de";
+
+
 
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(new ProfileType($em), $profile, array('attr' => array('locale' => 'de') ));
+        $form = $this->createForm(new ProfileType($em), $profile, array('attr' => array('locale' => $locale) ));
 
 
         if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			if ($form->isValid()) {
-    // $sprache1 = $this->getDoctrine()
-    //             ->getRepository('SinnigerTestBundle:Sprachen')
-    //             ->find(2);
-               // $profile->addFremdsprachen($sprache1);
+
+
+//Stuff for the userphoto
+
+              
+
+                $profile->upload();
 
 // echo '<pre>';
 // \Doctrine\Common\Util\Debug::dump($profile->getFremdsprachen());
 // echo '</pre>';die();
 
-//TODO: Remove duplicate languages
-foreach ($profile->getFremdsprachen() as $key=>$sprache){
-    echo $sprache->getId();
-}
+                //Remove duplicate languages
+                //ToDo: könnte eleganter sein: $profile->getFremdsprachen->contains($key)
+                $allLanguages=array();
+                foreach ($profile->getFremdsprachen() as $key=>$sprache){
+                    $allLanguages[]=$sprache->getId();
+                }
+                $counter=array_count_values($allLanguages);
+                foreach ($counter as $key => $value) {
+                    if ($value>1){
+                        $remove= $this->getDoctrine()
+                            ->getRepository('SinnigerTestBundle:Sprachen')
+                            ->find($key);
+                        $profile->removeFremdsprachen($remove);
+                    }
+                }
 
-                    // var_dump($form->getData());
 				$em->persist($profile);
-                //var_dump($profile->getFremdsprachen());
+
 				$em->flush();
                 return $this->redirect($this->generateUrl('sinniger_test_form'));
-			
 			}
 		}
+
+          $photoname= $profile->getPhotoname();
         return $this->render(
             'SinnigerTestBundle:Default:form.html.twig',
-            array('form' => $form->createView(), 'name'=>'bla')
+            array('form' => $form->createView(), 'photoname'=>$photoname)
         );
 
 
