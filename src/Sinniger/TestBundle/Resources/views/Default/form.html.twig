@@ -14,10 +14,23 @@
   {{ form_row(form.username) }}
 
 
+{% if photoname %}
+	<img src="../../uploads/photos/{{photoname}}" style="width:200px"/>
+	---
+	{% set mypath = '/uploads/photos/'~photoname %}
+	{{mypath}}
+	<img src="{{ mypath | imagine_filter('my_thumb') }}" />
 
-<img src="../../uploads/photos/{{photoname}}" style="width:200px">
-{{ form_end(form) }}
+{% endif %}
+  {{ form_row(form.photo) }}
+  {% if photoname %}
+    {{ form_row(form.delete) }}
+    {% else %}
+    {% do form.delete.setRendered %}
+ {% endif %}
+  {{ form_row(form.speichern) }}
 
+{{ form_end(form)}}
 
 
 {# <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> #}

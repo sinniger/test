@@ -5,3 +5,6 @@ sinniger_test_homepage:
 sinniger_test_form:
     path:     /form/
     defaults: { _controller: SinnigerTestBundle:Default:form }
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

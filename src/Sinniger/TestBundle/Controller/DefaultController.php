@@ -44,6 +44,13 @@ class DefaultController extends Controller
 
 //Stuff for the userphoto
 
+if ($form->get('delete')->isClicked()) {
+    $profile->setPhotoname(null);
+ //die("stest");
+ 
+}
+
+
               
 
                 $profile->upload();
@@ -75,7 +82,7 @@ class DefaultController extends Controller
 			}
 		}
 
-          $photoname= $profile->getPhotoname();
+        $photoname= $profile->getPhotoname();
         return $this->render(
             'SinnigerTestBundle:Default:form.html.twig',
             array('form' => $form->createView(), 'photoname'=>$photoname)

@@ -45,10 +45,12 @@ class ProfileType extends AbstractType
                 
         )
             ->add('username')
-            ->add('photo', 'file', array('label'=>'hochladen', 'virtual' => true,
+            ->add('photo', 'file', array('label'=>'hochladen', 'required' => false,
                                     'attr' => 
                                     array('label'=>'file upload', 
                                          'empty_value'=>'bitte wählen')))
+            
+            ->add('delete', 'submit', array('label' => 'Photo löschen'))
             ->add('speichern', 'submit')
             ;
     }

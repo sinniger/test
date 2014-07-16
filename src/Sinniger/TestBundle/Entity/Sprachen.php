@@ -47,7 +47,7 @@ class Sprachen
 
 
     /** 
-    *@ORM\ManyToMany(targetEntity="Profile", mappedBy="fremdsprachen", cascade={"persist"})
+    *@ORM\ManyToMany(targetEntity="Profile", mappedBy="fremdsprachen")
         **/
     private $benutzersprachen;
 
@@ -119,30 +119,30 @@ class Sprachen
      * @param \Sinniger\TestBundle\Entity\Profile $benutzersprachen
      * @return Sprachen
      */
-    public function addBenutzersprachen(\Sinniger\TestBundle\Entity\Profile $benutzersprachen)
-    {
-        $this->benutzersprachen[] = $benutzersprachen;
+    // public function addBenutzersprachen(\Sinniger\TestBundle\Entity\Profile $benutzersprachen)
+    // {
+    //     $this->benutzersprachen[] = $benutzersprachen;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * Remove benutzersprachen
      *
      * @param \Sinniger\TestBundle\Entity\Profile $benutzersprachen
      */
-    public function removeBenutzersprachen(\Sinniger\TestBundle\Entity\Profile $benutzersprachen)
-    {
-        $this->benutzersprachen->removeElement($benutzersprachen);
-    }
+    // public function removeBenutzersprachen(\Sinniger\TestBundle\Entity\Profile $benutzersprachen)
+    // {
+    //     $this->benutzersprachen->removeElement($benutzersprachen);
+    // }
 
     /**
      * Get benutzersprachen
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getBenutzersprachen()
-    {
-        return $this->benutzersprachen;
-    }
+    // public function getBenutzersprachen()
+    // {
+    //     return $this->benutzersprachen;
+    // }
 }
